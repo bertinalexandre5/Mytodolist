@@ -1,12 +1,3 @@
-/* Les listes en grille de cartes */
-.lists {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  align-items: start;
-}
-
-/* Une liste s'affiche comme une carte blanche aux coins arrondis */
 .card {
   padding: 1rem 1.25rem;
   background: white;
@@ -14,7 +5,6 @@
   box-shadow: 0 1px 4px rgb(0 0 0 / 15%);
 }
 
-/* En-tête d'une carte : le nom à gauche, le bouton de suppression à droite */
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -48,7 +38,6 @@ label {
   cursor: pointer;
 }
 
-/* Une tâche réalisée : texte barré et grisé */
 .done {
   text-decoration: line-through;
   color: #888;
@@ -59,8 +48,6 @@ label {
   font-style: italic;
 }
 
-
-/* Boutons ✕ : discrets, ils passent au rouge au survol */
 .delete {
   padding: 0.2rem 0.45rem;
   border: none;

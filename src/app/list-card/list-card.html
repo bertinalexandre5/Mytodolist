@@ -1,0 +1,36 @@
+<section class="card">
+  <div class="card-header">
+    <h2>{{ list().name }}</h2>
+    <button
+      type="button"
+      class="delete"
+      title="Supprimer la liste"
+      aria-label="Supprimer la liste"
+      (click)="deleteList.emit()"
+    >
+      ✕
+    </button>
+  </div>
+
+  <ul>
+    @for (task of list().tasks; track task.id) {
+      <li>
+        <label [class.done]="task.done">
+          <input type="checkbox" [checked]="task.done" (change)="toggleTask.emit(task)" />
+          {{ task.title }}
+        </label>
+        <button
+          type="button"
+          class="delete"
+          title="Supprimer la tâche"
+          aria-label="Supprimer la tâche"
+          (click)="deleteTask.emit(task)"
+        >
+          ✕
+        </button>
+      </li>
+    } @empty {
+      <li class="empty">Aucune tâche pour l'instant.</li>
+    }
+  </ul>
+</section>
