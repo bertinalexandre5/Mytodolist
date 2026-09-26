@@ -60,4 +60,11 @@ label {
 .delete:hover {
   background: #fdecea;
   color: #c62828;
-}
+}npm
+
+   /* Le formulaire d'ajout d'une tâche : le champ prend la place restante */
+ .new-task {
+   display: flex;
+   gap: 0.5rem;
+   margin-top: 0.75rem;
+ }

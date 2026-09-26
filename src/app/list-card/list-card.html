@@ -33,4 +33,17 @@
       <li class="empty">Aucune tâche pour l'instant.</li>
     }
   </ul>
+
+  <form class="new-task" (ngSubmit)="submitTask()">
+    <input
+      type="text"
+      class="field"
+      name="title"
+      placeholder="Nouvelle tâche"
+      aria-label="Nouvelle tâche"
+      maxlength="200"
+      [(ngModel)]="newTaskTitle"
+    />
+    <button type="submit" class="button" [disabled]="!newTaskTitle().trim()">Ajouter</button>
+  </form>
 </section>

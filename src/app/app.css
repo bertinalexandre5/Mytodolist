@@ -1,4 +1,18 @@
-/* Les listes en grille de cartes */
+header {
+  padding: 1rem 2rem;
+  background: #165B8EFF;
+  color: white;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+main {
+  padding: 1.5rem 2rem;
+}
+
 .lists {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -6,71 +20,14 @@
   align-items: start;
 }
 
-/* Une liste s'affiche comme une carte blanche aux coins arrondis */
-.card {
-  padding: 1rem 1.25rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 15%);
-}
-
-/* En-tête d'une carte : le nom à gauche, le bouton de suppression à droite */
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-h2 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.2rem 0;
-}
-
-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-}
-
-/* Une tâche réalisée : texte barré et grisé */
-.done {
-  text-decoration: line-through;
-  color: #888;
-}
-
 .empty {
   color: #888;
   font-style: italic;
 }
-
-
-/* Boutons ✕ : discrets, ils passent au rouge au survol */
-.delete {
-  padding: 0.2rem 0.45rem;
-  border: none;
-  border-radius: 4px;
-  background: none;
-  color: #aaa;
-  cursor: pointer;
-}
-
-.delete:hover {
-  background: #fdecea;
-  color: #c62828;
+/* Le formulaire de création d'une liste, au-dessus des cartes */
+.new-list {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 480px;
+  margin-bottom: 1.5rem;
 }

@@ -3,46 +3,30 @@
 </header>
 
 <main>
+  <form class="new-list" (ngSubmit)="createList()">
+    <input
+      type="text"
+      class="field"
+      name="name"
+      placeholder="Nom de la nouvelle liste"
+      aria-label="Nom de la nouvelle liste"
+      maxlength="100"
+      [(ngModel)]="newListName"
+    />
+    <button type="submit" class="button" [disabled]="!newListName().trim()">Créer la liste</button>
+  </form>
+
   <div class="lists">
     @for (list of lists(); track list.id) {
-      <section class="card">
-        <div class="card-header">
-          <h2>{{ list.name }}</h2>
-          <button
-            type="button"
-            class="delete"
-            title="Supprimer la liste"
-            aria-label="Supprimer la liste"
-            (click)="deleteList(list)"
-          >
-            ✕
-          </button>
-        </div>
-
-        <ul>
-          @for (task of list.tasks; track task.id) {
-            <li>
-              <label [class.done]="task.done">
-                <input type="checkbox" [checked]="task.done" (change)="toggleTask(list, task)" />
-                {{ task.title }}
-              </label>
-              <button
-                type="button"
-                class="delete"
-                title="Supprimer la tâche"
-                aria-label="Supprimer la tâche"
-                (click)="deleteTask(list, task)"
-              >
-                ✕
-              </button>
-            </li>
-          } @empty {
-            <li class="empty">Aucune tâche pour l'instant.</li>
-          }
-        </ul>
-      </section>
+      <app-list-card
+        [list]="list"
+        (addTask)="addTask(list, $event)"
+        (toggleTask)="toggleTask(list, $event)"
+        (deleteTask)="deleteTask(list, $event)"
+        (deleteList)="deleteList(list)"
+      />
     } @empty {
-      <p class="empty">Aucune liste pour l'instant.</p>
+      <p class="empty">Aucune liste pour l'instant. Créez-en une avec le formulaire ci-dessus.</p>
     }
   </div>
 </main>
