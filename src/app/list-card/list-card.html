@@ -1,7 +1,9 @@
 <section class="card">
   <div class="card-header">
-    <h2>{{ list().name }}</h2>
-    <button
+    <h2 [class.done]="completed()">{{ list().name }}</h2>
+    @if (list().tasks.length > 0) {
+      <span class="count">{{ doneCount() }} / {{ list().tasks.length }}</span>
+    }    <button
       type="button"
       class="delete"
       title="Supprimer la liste"

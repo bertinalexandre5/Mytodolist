@@ -17,12 +17,12 @@
   </form>
 
   <div class="lists">
-    @for (list of lists(); track list.id) {
+    @for (list of store.lists(); track list.id) {
       <app-list-card
         [list]="list"
-        (addTask)="addTask(list, $event)"
-        (toggleTask)="toggleTask(list, $event)"
-        (deleteTask)="deleteTask(list, $event)"
+        (addTask)="store.addTask(list, $event)"
+        (toggleTask)="store.toggleTask(list, $event)"
+        (deleteTask)="store.deleteTask(list, $event)"
         (deleteList)="deleteList(list)"
       />
     } @empty {

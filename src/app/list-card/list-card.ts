@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { Task, TodoList } from '../todo';
 import {FormsModule} from '@angular/forms';
 
@@ -9,6 +9,17 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './list-card.css',
 })
 export class ListCard {
+  /** Vrai quand la liste est terminée : au moins une tâche, et toutes réalisées. */
+  protected readonly completed = computed(() => {
+    const tasks = this.list().tasks;
+    return tasks.length > 0 && tasks.every((task) => task.done);
+  });
+
+  /** Nombre de tâches réalisées, affiché à côté du nom (par exemple « 1 / 3 »). */
+  protected readonly doneCount = computed(
+    () => this.list().tasks.filter((task) => task.done).length,
+  );
+
   /** Entrée : la liste à afficher, fournie par le parent. */
   readonly list = input.required<TodoList>();
 

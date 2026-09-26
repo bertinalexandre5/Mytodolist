@@ -14,8 +14,19 @@
 }
 
 h2 {
+  flex: 1;
   margin: 0;
   font-size: 1.2rem;
+}
+
+/* Le compteur « réalisées / total », en petit sur fond gris clair */
+.count {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: #eceff7;
+  color: #555;
+  font-size: 0.8rem;
+  white-space: nowrap;
 }
 
 ul {
