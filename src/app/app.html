@@ -3,6 +3,22 @@
 </header>
 
 <main>
+  @if (store.error(); as message) {
+    <div class="error" role="alert">
+      <span>{{ message }}</span>
+      <button type="button" class="button" (click)="store.load()">Recharger les listes</button>
+      <button
+        type="button"
+        class="close"
+        title="Fermer le message"
+        aria-label="Fermer le message"
+        (click)="store.clearError()"
+      >
+        ✕
+      </button>
+    </div>
+  }
+
   <form class="new-list" (ngSubmit)="createList()">
     <input
       type="text"
@@ -16,17 +32,25 @@
     <button type="submit" class="button" [disabled]="!newListName().trim()">Créer la liste</button>
   </form>
 
-  <div class="lists">
-    @for (list of store.lists(); track list.id) {
-      <app-list-card
-        [list]="list"
-        (addTask)="store.addTask(list, $event)"
-        (toggleTask)="store.toggleTask(list, $event)"
-        (deleteTask)="store.deleteTask(list, $event)"
-        (deleteList)="deleteList(list)"
-      />
-    } @empty {
-      <p class="empty">Aucune liste pour l'instant. Créez-en une avec le formulaire ci-dessus.</p>
-    }
-  </div>
+  @if (store.loading()) {
+    <p class="empty">Chargement des listes…</p>
+  } @else {
+    <div class="lists">
+      @for (list of store.lists(); track list.id) {
+        <app-list-card
+          [list]="list"
+          (addTask)="store.addTask(list, $event)"
+          (toggleTask)="store.toggleTask(list, $event)"
+          (deleteTask)="store.deleteTask(list, $event)"
+          (deleteList)="deleteList(list)"
+        />
+      } @empty {
+        @if (!store.error()) {
+          <p class="empty">
+            Aucune liste pour l'instant. Créez-en une avec le formulaire ci-dessus.
+          </p>
+        }
+      }
+    </div>
+  }
 </main>

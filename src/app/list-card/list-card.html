@@ -18,8 +18,11 @@
     @for (task of list().tasks; track task.id) {
       <li>
         <label [class.done]="task.done">
-          <input type="checkbox" [checked]="task.done" (change)="toggleTask.emit(task)" />
-          {{ task.title }}
+          <input
+            type="checkbox"
+            [checked]="task.done"
+            (click)="$event.preventDefault(); toggleTask.emit(task)"
+          />          {{ task.title }}
         </label>
         <button
           type="button"
