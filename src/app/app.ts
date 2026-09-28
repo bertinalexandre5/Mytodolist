@@ -3,16 +3,21 @@ import { FormsModule } from '@angular/forms';
 import { ListCard } from './list-card/list-card';
 import { TodoList } from './todo';
 import { TodoStore } from './todo-store';
+import {AccountPanel} from './account-panel/account-panel';
+import {AuthStore} from './auth-store';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, ListCard],
+  imports: [FormsModule, AccountPanel, ListCard],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
   /** Le service qui détient les listes : Angular nous donne son exemplaire unique. */
   protected readonly store = inject(TodoStore);
+
+  /** Le service du compte : le gabarit s'en sert pour dire où vont les listes. */
+  protected readonly auth = inject(AuthStore);
 
   protected readonly title = 'Mes listes de tâches';
 

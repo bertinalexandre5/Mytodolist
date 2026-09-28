@@ -1,0 +1,48 @@
+:host {
+  display: block;
+}
+
+.login,
+.connected {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input {
+  width: 9rem;
+  padding: 0.35rem 0.5rem;
+  border: none;
+  border-radius: 6px;
+  font: inherit;
+}
+
+button {
+  padding: 0.35rem 0.7rem;
+  border: 1px solid white;
+  border-radius: 6px;
+  background: white;
+  color: #3949ab;
+  font: inherit;
+  cursor: pointer;
+}
+
+.secondary {
+  background: transparent;
+  color: white;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.message {
+  margin: 0.5rem 0 0;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  background: #fdecea;
+  color: #8e1c1c;
+  font-size: 0.9rem;
+}

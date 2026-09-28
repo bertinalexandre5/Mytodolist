@@ -1,9 +1,14 @@
+/* L'en-tête : le titre à gauche, le panneau du compte à droite (en dessous si trop étroit). */
 header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
   padding: 1rem 2rem;
-  background: #165B8EFF;
+  background: #196ead;
   color: white;
 }
-
 h1 {
   margin: 0;
   font-size: 1.6rem;
@@ -30,6 +35,21 @@ main {
   gap: 0.5rem;
   max-width: 480px;
   margin-bottom: 1.5rem;
+}
+
+.new-list {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 480px;
+  margin-bottom: 0.5rem;
+}
+
+
+/* La ligne d'état de la synchronisation, discrète, sous le formulaire */
+.sync-status {
+  margin: 0 0 1.5rem;
+  color: #666;
+  font-size: 0.9rem;
 }
 
 /* Le bandeau d'erreur : fond rouge pâle, le message à gauche, les boutons à droite */

@@ -143,25 +143,17 @@ public final class TodoRepository implements AutoCloseable {
     }
   }
 
-  /** Remplit une base neuve avec quelques listes, pour avoir quelque chose à afficher. */
+  /** Remplit une base neuve avec les listes d'exemple (voir StartingLists). */
   public void insertDemoData() throws SQLException {
-    long courses = createList("Courses").id();
-    completeTask(createTask(courses, "Pain"));
-    createTask(courses, "Lait");
-    createTask(courses, "Pommes");
-
-    long holidays = createList("Préparer les vacances").id();
-    completeTask(createTask(holidays, "Réserver le train"));
-    createTask(holidays, "Faire la valise");
-
-    // Toutes ses tâches sont réalisées : son nom s'affichera barré.
-    long angular = createList("Découvrir Angular").id();
-    completeTask(createTask(angular, "Installer Node.js"));
-    completeTask(createTask(angular, "Créer le projet"));
-  }
-
-  private void completeTask(Optional<Task> task) throws SQLException {
-    updateTask(task.orElseThrow().id(), true);
+    for (TodoList list : StartingLists.LISTS) {
+      long listId = createList(list.name()).id();
+      for (Task task : list.tasks()) {
+        long taskId = createTask(listId, task.title()).orElseThrow().id();
+        if (task.done()) {
+          updateTask(taskId, true);
+        }
+      }
+    }
   }
 
   /** Exécute un INSERT … RETURNING id et renvoie le numéro attribué par la base. */

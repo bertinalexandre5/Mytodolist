@@ -1,0 +1,39 @@
+@if (auth.username(); as name) {
+  <div class="connected">
+    <span>Connecté : <strong>{{ name }}</strong></span>
+    <button type="button" class="secondary" (click)="logout()">Se déconnecter</button>
+    <button type="button" class="secondary" (click)="deleteAccount()">Supprimer mon compte</button>
+  </div>
+} @else {
+  <form class="login" (ngSubmit)="login()">
+    <input
+      type="text"
+      name="username"
+      placeholder="Identifiant"
+      aria-label="Identifiant"
+      autocomplete="username"
+      [(ngModel)]="username"
+    />
+    <input
+      type="password"
+      name="password"
+      placeholder="Mot de passe"
+      aria-label="Mot de passe"
+      autocomplete="current-password"
+      [(ngModel)]="password"
+    />
+    <button type="submit" [disabled]="busy() || !username() || !password()">Se connecter</button>
+    <button
+      type="button"
+      class="secondary"
+      [disabled]="busy() || !username() || !password()"
+      (click)="register()"
+    >
+      Créer un compte
+    </button>
+  </form>
+}
+
+@if (message(); as text) {
+  <p class="message" role="alert">{{ text }}</p>
+}

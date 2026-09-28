@@ -1,12 +1,13 @@
 <header>
   <h1>{{ title }}</h1>
+  <app-account-panel />
 </header>
 
 <main>
   @if (store.error(); as message) {
     <div class="error" role="alert">
       <span>{{ message }}</span>
-      <button type="button" class="button" (click)="store.load()">Recharger les listes</button>
+      <button type="button" class="button" (click)="store.retry()">Réessayer</button>
       <button
         type="button"
         class="close"
@@ -31,7 +32,16 @@
     />
     <button type="submit" class="button" [disabled]="!newListName().trim()">Créer la liste</button>
   </form>
-
+  <p class="sync-status">
+    @if (store.saving()) {
+      Envoi des listes au serveur…
+    } @else if (auth.username()) {
+      Vos listes sont enregistrées dans le compte « {{ auth.username() }} ».
+    } @else {
+      Mode test : vos listes sont envoyées au serveur, mais il ne les conserve pas. Connectez-vous
+        pour les enregistrer.
+    }
+  </p>
   @if (store.loading()) {
     <p class="empty">Chargement des listes…</p>
   } @else {
